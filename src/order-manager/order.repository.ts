@@ -8,21 +8,21 @@ import { ProductAmmount } from '@prisma/client';
 export class OrderRepository {
   constructor(private prisma: PrismaService) {}
 
-  async createOrder(order: OrderCreate) {
-    const subOrders = await this.createSubOrder(order.subOrders, order.id);
-    return this.prisma.order.create({
-      data: {
-        id: order.id,
-        delivered: false,
-        client: {
-          create: order.client,
-        },
-        subOrder: {
-          create: subOrders,
-        },
-      },
-    });
-  }
+  // async createOrder(order: OrderCreate) {
+  //   const subOrders = await this.createSubOrder(order.subOrders, order.id);
+  //   return this.prisma.order.create({
+  //     data: {
+  //       id: order.id,
+  //       delivered: false,
+  //       client: {
+  //         create: order.client,
+  //       },
+  //       subOrder: {
+  //         create: subOrders,
+  //       },
+  //     },
+  //   });
+  // }
 
   private async createSubOrder(suborders: SubOrderCreate[], orderId: string) {
     return Promise.all(
