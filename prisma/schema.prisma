@@ -21,33 +21,25 @@ model Supplier {
 
 model SubOrder {
   id        String  @id() @default(uuid())
-  delivered Boolean
+  delivered Boolean @default(false)
+  productId String
+  amount    Int
 
   supplierId String
   supplier   Supplier @relation(fields: [supplierId], references: [id])
-
-  productAmmountId String
-  productAmmount   ProductAmmount @relation(fields: [productAmmountId], references: [id])
 
   orderId String
   order   Order  @relation(fields: [orderId], references: [id])
 }
 
-model ProductAmmount {
-  id        String     @id() @default(uuid())
-  productId String
-  ammount   Int
-  SubOrder  SubOrder[]
-}
-
 model Order {
   id        String  @id() @default(uuid())
-  delivered Boolean
+  delivered Boolean @default(false)
 
   clientId String
   client   Client @relation(fields: [clientId], references: [id])
 
-  subOrder SubOrder[]
+  subOrders SubOrder[]
 }
 
 model Client {
