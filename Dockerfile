@@ -1,4 +1,5 @@
-FROM node:18-alpine as dependencies
+FROM node:20 as dependencies
+RUN apt-get update -y && apt-get install -y openssl libc6
 
 ARG PORT
 ARG POSTGRES_DB
@@ -31,7 +32,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 
 RUN npm run build
 
-FROM node:18-slim
+FROM node:20-slim
 
 RUN apt-get update -y && apt-get install -y openssl libc6
 
@@ -41,9 +42,7 @@ COPY --from=build /app/dist ./dist
 
 COPY --from=dependencies /app/node_modules ./node_modules
 
-COPY ./prisma ./prisma
-
-COPY package*.json ./
+COPY . .
 
 
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "dev"]

@@ -34,7 +34,7 @@ services:
       - sh
       - -c
       - |
-        npm run db:apply && npm run start:prod
+        npm run db:apply && npm run db:seed && npm run start
 
 volumes:
   db-data:

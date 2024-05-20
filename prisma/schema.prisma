@@ -43,8 +43,8 @@ model Order {
 }
 
 model Client {
-  id     String  @id() @default(uuid())
-  name   String
-  adress String
-  Order  Order[]
+  id      String  @id() @default(uuid())
+  name    String
+  address String
+  Order   Order[]
 }
