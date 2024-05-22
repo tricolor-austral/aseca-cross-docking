@@ -1,7 +1,6 @@
-import { ProductAmmount } from '@prisma/client';
+import { ProductAmountCreate } from './product-amount-create';
 
 export class SubOrderCreate {
   supplierId: string;
-  productAmmount: ProductAmmount[];
-  orderId: string;
+  productAmount: ProductAmountCreate[];
 }

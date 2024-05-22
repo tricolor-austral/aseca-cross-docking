@@ -26,18 +26,18 @@ model SubOrder {
   supplierId String
   supplier   Supplier @relation(fields: [supplierId], references: [id])
 
-  productAmmountId String
-  productAmmount   ProductAmmount @relation(fields: [productAmmountId], references: [id])
+  productAmmount ProductAmmount[]
 
   orderId String
   order   Order  @relation(fields: [orderId], references: [id])
 }
 
 model ProductAmmount {
-  id        String     @id() @default(uuid())
-  productId String
-  ammount   Int
-  SubOrder  SubOrder[]
+  id         String   @id() @default(uuid())
+  productId  String
+  ammount    Int
+  subOrderId String
+  SubOrder   SubOrder @relation(fields: [subOrderId], references: [id])
 }
 
 model Order {
