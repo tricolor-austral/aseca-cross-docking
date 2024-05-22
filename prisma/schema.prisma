@@ -33,9 +33,10 @@ model SubOrder {
 }
 
 model ProductAmmount {
-  id         String   @id() @default(uuid())
-  productId  String
-  ammount    Int
+  id        String @id() @default(uuid())
+  productId String
+  ammount   Int
+
   subOrderId String
   SubOrder   SubOrder @relation(fields: [subOrderId], references: [id])
 }

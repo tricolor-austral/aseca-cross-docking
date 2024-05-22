@@ -19,11 +19,11 @@ async function main() {
     where: { id: 'clientId' },
     update: {
       name: 'John Doe',
-      address: 'main st. 123',
+      adress: 'main st. 123',
     },
     create: {
       name: 'John Doe',
-      address: 'main st. 123',
+      adress: 'main st. 123',
     },
   });
 }

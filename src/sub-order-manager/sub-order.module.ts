@@ -9,6 +9,6 @@ import { SubOrderController } from './sub-order.controller';
   imports: [],
   controllers: [SubOrderController],
   providers: [SubOrderService, SubOrderRepository, PrismaService],
-  exports: [SubOrderService],
+  exports: [SubOrderService, SubOrderRepository],
 })
-export class AppModule {}
+export class SubOrderModule {}

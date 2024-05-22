@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma-service';
-import { SubOrderCreate } from './dtos/sub-order-create';
-import { ProductAmountCreate } from './dtos/product-amount-create';
+import { ProductAmountCreate } from './dto/product-amount-create';
+import { CreateSuborderDto } from './dto/create-suborder.dto';
 
 @Injectable()
 export class SubOrderRepository {
@@ -14,7 +14,7 @@ export class SubOrderRepository {
     });
   }
 
-  public async createSubOrder(subOrderCreate: SubOrderCreate, id: string) {
+  public async createSubOrder(subOrderCreate: CreateSuborderDto, id: string) {
     const order = await this.prisma.subOrder.create({
       data: {
         delivered: false,
