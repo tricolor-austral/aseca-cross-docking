@@ -9,7 +9,7 @@ import { SubOrderModule } from '../sub-order-manager/sub-order.module';
 
 @Module({
   controllers: [OrderController],
-  providers: [PrismaService, OrderRepository, OrderService, SubOrderService],
+  providers: [PrismaService, OrderRepository, OrderService],
   imports: [ClientModule, SubOrderModule],
 })
 export class OrderModule {}

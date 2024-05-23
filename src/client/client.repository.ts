@@ -12,7 +12,7 @@ export class ClientRepository {
 
     if (!prismaClientClient) {
       prismaClientClient = await this.prisma.client.create({
-        data: { name: client.name, adress: client.address },
+        data: { name: client.name, address: client.address },
       });
     }
 

@@ -10,6 +10,7 @@ async function main() {
       name: 'supplier 1',
     },
     create: {
+      id: 'supplierId',
       name: 'supplier 1',
     },
   });
@@ -19,11 +20,11 @@ async function main() {
     where: { id: 'clientId' },
     update: {
       name: 'John Doe',
-      adress: 'main st. 123',
+      address: 'main st. 123',
     },
     create: {
       name: 'John Doe',
-      adress: 'main st. 123',
+      address: 'main st. 123',
     },
   });
 }

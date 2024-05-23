@@ -5,8 +5,8 @@ export class CreateOrderDto {
   client: ClientCreateDto;
   subOrders: CreateSuborderDto[];
 
-  constructor(clientId: ClientCreateDto, subOrders: CreateSuborderDto[]) {
-    this.client = clientId;
+  constructor(client: ClientCreateDto, subOrders: CreateSuborderDto[]) {
+    this.client = client;
     this.subOrders = subOrders;
   }
 }

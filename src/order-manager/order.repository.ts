@@ -13,7 +13,6 @@ export class OrderRepository {
   ) {}
 
   async createOrder(order: CreateOrderDto) {
-    console.log('Start function');
     const client = await this.clientService.findOrCreate(order.client);
     const createdOrder = await this.prisma.order.create({
       data: {
@@ -24,10 +23,17 @@ export class OrderRepository {
     for (const subOrder of order.subOrders) {
       await this.subOrderService.createSubOrder(subOrder, createdOrder.id);
     }
-    console.log('arrived here');
     return this.prisma.order.findFirst({
       where: {
         id: createdOrder.id,
+      },
+      include: {
+        subOrder: {
+          include: {
+            productAmmount: {},
+          },
+        },
+        client: true,
       },
     });
   }

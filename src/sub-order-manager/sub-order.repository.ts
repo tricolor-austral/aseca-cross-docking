@@ -29,8 +29,8 @@ export class SubOrderRepository {
     productAmounts: ProductAmountCreate[],
     subOrderId: string,
   ) {
-    return productAmounts.map((productAmount) => {
-      return this.prisma.productAmmount.create({
+    return productAmounts.map(async (productAmount) => {
+      await this.prisma.productAmmount.create({
         data: {
           productId: productAmount.productId,
           ammount: productAmount.amount,

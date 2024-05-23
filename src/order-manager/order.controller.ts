@@ -7,7 +7,6 @@ export class OrderController {
   constructor(private service: OrderService) {}
   @Post('create')
   public async createOrder(@Body() order: CreateOrderDto) {
-    await this.service.createOrder(order);
-    return 'successfully!';
+    return this.service.createOrder(order);
   }
 }
