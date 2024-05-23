@@ -11,6 +11,9 @@ export class SubOrderRepository {
     return this.prisma.subOrder.update({
       where: { id: id },
       data: { delivered: true },
+      include: {
+        productAmmount: {},
+      },
     });
   }
 

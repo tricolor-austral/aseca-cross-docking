@@ -8,4 +8,8 @@ export class OrderService {
   public async createOrder(orderCreate: CreateOrderDto) {
     return this.repository.createOrder(orderCreate);
   }
+
+  public async updateWholeDelivery(id: string) {
+    return this.repository.updateOrderDelivery(id);
+  }
 }

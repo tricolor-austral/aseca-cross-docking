@@ -37,4 +37,12 @@ export class OrderRepository {
       },
     });
   }
+
+  async updateOrderDelivery(id: string) {
+    return this.prisma.order.update({
+      where: { id: id },
+      data: { delivered: true },
+      include: { client: true },
+    });
+  }
 }
