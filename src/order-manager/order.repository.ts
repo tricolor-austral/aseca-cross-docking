@@ -45,4 +45,22 @@ export class OrderRepository {
       include: { client: true },
     });
   }
+
+  async getOrderState(id: string) {
+    return this.prisma.order.findUnique({
+      where: { id: id },
+      include: {
+        subOrder: {
+          include: {
+            productAmmount: {},
+            supplier: true,
+          },
+        },
+      },
+    });
+  }
+
+  async findAll() {
+    return this.prisma.order.findMany();
+  }
 }

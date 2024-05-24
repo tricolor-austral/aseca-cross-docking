@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 
@@ -11,7 +11,28 @@ export class OrderController {
   }
 
   @Put('deliver/:id')
-  public async deliverWholeOrder(@Param('id') id: string) {
-    return this.service.updateWholeDelivery(id);
+  async deliverOrder(@Param('id') id: string) {
+    try {
+      console.log(id);
+      const result = await this.service.updateWholeDelivery(id);
+      return result;
+    } catch (error) {
+      console.error('Error delivering order:', error);
+      throw new HttpException(
+        'Failed to deliver order',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Get('state/:id')
+  public async getOrderState(@Param('id') id: string) {
+    return this.service.getOrderState(id);
+  }
+
+  @Get()
+  public async getOrders() {
+    console.log('Getting orders');
+    return this.service.getOrders();
   }
 }

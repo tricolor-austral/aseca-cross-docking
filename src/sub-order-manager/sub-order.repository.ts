@@ -7,7 +7,7 @@ import { CreateSuborderDto } from './dto/create-suborder.dto';
 export class SubOrderRepository {
   constructor(private prisma: PrismaService) {}
 
-  public async updateDelivery(id: string) {
+  async updateDelivery(id: string) {
     return this.prisma.subOrder.update({
       where: { id: id },
       data: { delivered: true },
@@ -17,7 +17,7 @@ export class SubOrderRepository {
     });
   }
 
-  public async createSubOrder(subOrderCreate: CreateSuborderDto, id: string) {
+  async createSubOrder(subOrderCreate: CreateSuborderDto, id: string) {
     const order = await this.prisma.subOrder.create({
       data: {
         delivered: false,
@@ -26,6 +26,14 @@ export class SubOrderRepository {
       },
     });
     await this.createProductAmount(subOrderCreate.productAmount, order.id);
+  }
+
+  async getAll() {
+    return this.prisma.subOrder.findMany({
+      include: {
+        productAmmount: {},
+      },
+    });
   }
 
   private async createProductAmount(
