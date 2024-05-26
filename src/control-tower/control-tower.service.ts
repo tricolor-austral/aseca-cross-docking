@@ -8,7 +8,11 @@ export class ControlTowerService {
   private url = '';
 
   async notifyControlTower(order) {
-    // await axios.post(this.url, order);
+    try {
+      await axios.post(this.url, order);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async checkAllItemsDelivered(id: string) {

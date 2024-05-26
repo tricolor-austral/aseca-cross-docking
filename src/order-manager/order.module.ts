@@ -6,10 +6,11 @@ import { OrderController } from './order.controller';
 import { ClientModule } from '../client/client.module';
 import { SubOrderModule } from '../sub-order-manager/sub-order.module';
 import { ControlTowerModule } from '../control-tower/control-tower.module';
+import { OrderRepositoryMock } from './order.repositoryMock';
 
 @Module({
   controllers: [OrderController],
-  providers: [PrismaService, OrderRepository, OrderService],
+  providers: [PrismaService, OrderRepository, OrderService, OrderRepositoryMock],
   imports: [ClientModule, SubOrderModule, ControlTowerModule],
 })
 export class OrderModule {}
