@@ -5,7 +5,6 @@ import { OrderRepository } from './order.repository';
 import { OrderRepositoryMock } from './order.repositoryMock';
 import { ProductAmountCreate } from '../sub-order-manager/dto/product-amount-create';
 import { CreateSuborderDto } from '../sub-order-manager/dto/create-suborder.dto';
-import { ClientCreateDto } from '../client/dto/client-create-dto';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { ControlTowerService } from '../control-tower/control-tower.service';
 import { ControlTowerServiceMock } from '../control-tower/control-tower.serviceMock';
@@ -39,36 +38,32 @@ describe('OrderService', () => {
       ],
     }).compile();
     orderService = moduleFixture.get<OrderService>(OrderService);
-
   });
   it('should be defined', () => {
     expect(orderService).toBeDefined();
   });
-    it('create an order', async () => {
-      const clientCreate = new ClientCreateDto('client 1', 'address 1');
-      const productAmmountCreate = new ProductAmountCreate('item 1', 10);
-      const subOrderCreate = new CreateSuborderDto('supplier 1', [
-        productAmmountCreate,
-      ]);
-      const orderCreate = new CreateOrderDto(clientCreate, [subOrderCreate]);
-      const order = await orderService.createOrder(orderCreate);
-      expect(order).toBeDefined();
-      expect(order.client.name).toEqual('client 1');
-      expect(order.subOrder).toHaveLength(1);
-      expect(order.subOrder[0].productAmmount).toHaveLength(1);
-    });
-    it('update delivery', async () => {
-      const order = createOrder();
-      await orderService.createOrder(order);
-      const deliveredOrder =  await orderService.updateWholeDelivery('1');
-      expect(order).toBeDefined();
-      expect(deliveredOrder.delivered).toBeTruthy();
-    });
-
+  it('create an order', async () => {
+    const productAmmountCreate = new ProductAmountCreate('item 1', 10);
+    const subOrderCreate = new CreateSuborderDto('supplier 1', [
+      productAmmountCreate,
+    ]);
+    const orderCreate = new CreateOrderDto('Fake client id', [subOrderCreate]);
+    const order = await orderService.createOrder(orderCreate);
+    expect(order).toBeDefined();
+    expect(order.subOrder).toHaveLength(1);
+    expect(order.subOrder[0].productAmmount).toHaveLength(1);
+  });
+  it('update delivery', async () => {
+    const order = createOrder();
+    await orderService.createOrder(order);
+    const deliveredOrder = await orderService.updateWholeDelivery('1');
+    expect(order).toBeDefined();
+    expect(deliveredOrder.delivered).toBeTruthy();
+  });
 });
 
 function createClient() {
-  return new ClientCreateDto('client 1', 'address 1');
+  return 'fake client id';
 }
 
 function createProductAmount() {
@@ -82,4 +77,3 @@ function createSubOrder() {
 function createOrder() {
   return new CreateOrderDto(createClient(), [createSubOrder()]);
 }
-

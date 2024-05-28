@@ -10,7 +10,12 @@ import { OrderRepositoryMock } from './order.repositoryMock';
 
 @Module({
   controllers: [OrderController],
-  providers: [PrismaService, OrderRepository, OrderService, OrderRepositoryMock],
+  providers: [
+    PrismaService,
+    OrderRepository,
+    OrderService,
+    OrderRepositoryMock,
+  ],
   imports: [ClientModule, SubOrderModule, ControlTowerModule],
 })
 export class OrderModule {}

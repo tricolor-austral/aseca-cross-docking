@@ -1,12 +1,11 @@
 import { CreateSuborderDto } from '../../sub-order-manager/dto/create-suborder.dto';
-import { ClientCreateDto } from '../../client/dto/client-create-dto';
 
 export class CreateOrderDto {
-  client: ClientCreateDto;
+  clientId: string;
   subOrders: CreateSuborderDto[];
 
-  constructor(client: ClientCreateDto, subOrders: CreateSuborderDto[]) {
-    this.client = client;
+  constructor(clientId: string, subOrders: CreateSuborderDto[]) {
+    this.clientId = clientId;
     this.subOrders = subOrders;
   }
 }

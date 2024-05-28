@@ -1,6 +1,6 @@
 import { ControlTowerService } from './control-tower.service';
 
-export class ControlTowerServiceMock extends ControlTowerService{
+export class ControlTowerServiceMock extends ControlTowerService {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async notifyControlTower(order): Promise<void> {
     console.log('Notifying control tower');

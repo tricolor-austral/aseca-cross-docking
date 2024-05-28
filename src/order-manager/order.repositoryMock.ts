@@ -1,5 +1,5 @@
 import { OrderRepository } from './order.repository';
-import { Order, ProductAmmount, SubOrder } from '@prisma/client';
+import { ProductAmmount } from '@prisma/client';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Injectable } from '@nestjs/common';
 
@@ -14,8 +14,8 @@ export class OrderRepositoryMock extends OrderRepository {
     const createdOrder = {
       id: this.nextId,
       delivered: false,
-      clientId: this.nextId,
-      client: { ...order.client, id: this.nextId },
+      clientId: order.clientId,
+      client: { id: order.clientId, name: 'john doe', address: 'su casa' },
       subOrder: order.subOrders.map((subOrder) => {
         this.nextSubOrderId = (parseInt(this.nextSubOrderId) + 1).toString();
         return {
@@ -49,7 +49,7 @@ export class OrderRepositoryMock extends OrderRepository {
       client: order.client,
       delivered: order.delivered,
       id: order.id,
-      clientId: order.clientId
+      clientId: order.clientId,
     });
   }
 }

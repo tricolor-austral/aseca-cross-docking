@@ -42,6 +42,8 @@ export class OrderController {
   @Get()
   public async getOrders() {
     console.log('Getting orders');
-    return this.service.getOrders();
+    const orders = this.service.getOrders();
+    console.log('Orders sent');
+    return orders;
   }
 }
