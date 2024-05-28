@@ -10,7 +10,6 @@ export class OrderService {
     private ctService: ControlTowerService,
   ) {}
   async createOrder(orderCreate: CreateOrderDto) {
-    console.log(this.repository);
     return this.repository.createOrder(orderCreate);
   }
 
