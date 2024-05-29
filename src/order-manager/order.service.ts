@@ -15,7 +15,7 @@ export class OrderService {
 
   async updateWholeDelivery(id: string) {
     const order = await this.repository.updateOrderDelivery(id);
-    await this.ctService.notifyControlTower(order);
+    await this.ctService.notifyControlTower({ ...order, orderId: id });
     return order;
   }
 
