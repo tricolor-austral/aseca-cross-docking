@@ -16,6 +16,7 @@ export class OrderRepository {
     const client = await this.clientService.findOrCreate(order.clientId);
     const createdOrder = await this.prisma.order.create({
       data: {
+        id: order.id,
         delivered: false,
         clientId: client.id,
       },
