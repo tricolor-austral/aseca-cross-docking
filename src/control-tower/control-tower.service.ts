@@ -6,7 +6,7 @@ import { ControlTowerRepository } from './control-tower.repository';
 export class ControlTowerService {
   constructor(private repository: ControlTowerRepository) {}
   private url =
-    'https://e6cd-181-169-17-49.ngrok-free.app/cross-docking/delivered';
+    'https://1446-181-169-17-49.ngrok-free.app/cross-docking/delivered';
 
   async notifyControlTower(order) {
     try {

@@ -47,7 +47,11 @@ describe('OrderService', () => {
     const subOrderCreate = new CreateSuborderDto('supplier 1', [
       productAmmountCreate,
     ]);
-    const orderCreate = new CreateOrderDto('Fake client id', [subOrderCreate]);
+    const orderCreate = new CreateOrderDto(
+      'Fake client id',
+      [subOrderCreate],
+      '1',
+    );
     const order = await orderService.createOrder(orderCreate);
     expect(order).toBeDefined();
     expect(order.subOrder).toHaveLength(1);
@@ -75,5 +79,5 @@ function createSubOrder() {
 }
 
 function createOrder() {
-  return new CreateOrderDto(createClient(), [createSubOrder()]);
+  return new CreateOrderDto(createClient(), [createSubOrder()], '1');
 }

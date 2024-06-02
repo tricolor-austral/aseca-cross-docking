@@ -49,7 +49,7 @@ export class OrderRepository {
 
   async getOrderState(id: string) {
     return this.prisma.order.findUnique({
-      where: { id: id },
+      where: { id: id, delivered: false },
       include: {
         subOrder: {
           include: {
