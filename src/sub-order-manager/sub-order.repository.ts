@@ -28,6 +28,15 @@ export class SubOrderRepository {
     await this.createProductAmount(subOrderCreate.productAmount, order.id);
   }
 
+  async getSubOrderById(id: string) {
+    return this.prisma.subOrder.findUnique({
+      where: { id: id },
+      include: {
+        productAmmount: {},
+      },
+    });
+  }
+
   async getAll() {
     return this.prisma.subOrder.findMany({
       include: {

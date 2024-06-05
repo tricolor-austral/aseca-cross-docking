@@ -21,17 +21,8 @@ export class OrderController {
 
   @Put('deliver/:id')
   async deliverOrder(@Param('id') id: string) {
-    try {
-      console.log(id);
-      const result = await this.service.updateWholeDelivery(id);
-      return result;
-    } catch (error) {
-      console.error('Error delivering order:', error);
-      throw new HttpException(
-        'Failed to deliver order',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
+    const result = await this.service.updateWholeDelivery(id);
+    return result;
   }
 
   @Get('state/:id')

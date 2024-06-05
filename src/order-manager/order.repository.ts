@@ -47,6 +47,21 @@ export class OrderRepository {
     });
   }
 
+  async getById(id: string) {
+    return this.prisma.order.findUnique({
+      where: { id: id },
+      include: {
+        subOrder: {
+          include: {
+            productAmmount: {},
+            supplier: true,
+          },
+        },
+        client: true,
+      },
+    });
+  }
+
   async getOrderState(id: string) {
     return this.prisma.order.findUnique({
       where: { id: id, delivered: false },

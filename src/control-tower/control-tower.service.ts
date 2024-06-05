@@ -6,13 +6,12 @@ import { ControlTowerRepository } from './control-tower.repository';
 export class ControlTowerService {
   constructor(private repository: ControlTowerRepository) {}
   private url =
-    'https://1446-181-169-17-49.ngrok-free.app/cross-docking/delivered';
+    'https://fc43-181-169-17-49.ngrok-free.app/cross-docking/delivered';
 
   async notifyControlTower(order) {
     try {
       const data = {
         orderID: order.orderId,
-        buyerId: order.clientId,
       };
       const response = await axios.post(this.url, data);
       if (response.status != 201)
