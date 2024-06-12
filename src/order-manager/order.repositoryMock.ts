@@ -52,4 +52,7 @@ export class OrderRepositoryMock extends OrderRepository {
       clientId: order.clientId,
     });
   }
+  async getById(id: string) {
+    return this.orders.find((order) => order.id === id);
+  }
 }

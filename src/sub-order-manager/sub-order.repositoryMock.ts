@@ -35,4 +35,16 @@ export class SubOrderRepositoryMock extends SubOrderRepository {
       },
     ];
   }
+
+  async getSubOrderById(id: string): Promise<any> {
+    if (id === '1') {
+      return {
+        id: '1',
+        delivered: false,
+        orderId: '1',
+        supplierId: '1',
+        productAmmount: [],
+      };
+    } else return null;
+  }
 }
